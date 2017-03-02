@@ -23,9 +23,11 @@ class App extends Component {
 
 	handelTouchZoomIn(e) {
 
+    // console.log(this.state.zoomFactor);
+
 		if (this.state.zoomFactor >= -16100) {
 
-			const newZoomFactor = this.state.zoomFactor - 64;
+			const newZoomFactor = this.state.zoomFactor - 100;
 
 			this.setState({
 				zoomFactor: newZoomFactor
@@ -35,9 +37,10 @@ class App extends Component {
 
 	handelTouchZoomOut(e) {
 
+    // console.log(this.state.zoomFactor);
 		if (this.state.zoomFactor <= 100) {
 
-			const newZoomFactor = this.state.zoomFactor + 64;
+			const newZoomFactor = this.state.zoomFactor + 100;
 
 			this.setState({
 				zoomFactor: newZoomFactor
@@ -47,7 +50,7 @@ class App extends Component {
 
   render() {
 
-  	const image1P = 400 + this.state.zoomFactor;
+  	const image1P = 600 + this.state.zoomFactor;
     const image2P = 1100 + this.state.zoomFactor;
     const image3P = 3100 + this.state.zoomFactor;
     const image4P = 5100 + this.state.zoomFactor;
@@ -60,14 +63,15 @@ class App extends Component {
     
     const opacity = 0.85;
     const top = '5%';
-    const left = '-25%';
-    const right = '-10%';
+    const left = '-15%';
+    const right = '-15%';
 
   	const css = {
   		wrapper: {
   			perspective: 1900,
   			transformStyle: 'preserve-3d',
   			position: 'reletive',
+        width: '100%',
   			height: (this.state.isiPhone) ? screen.availHeight : screen.availHeight - 80
   		},
   		image1: {
@@ -77,7 +81,8 @@ class App extends Component {
         right,
         top,
         position: 'absolute',
-        transform: 'translateZ(-' + image1P +'px)', display: (image1P <= 1) ? 'none' : 'block',
+        transform: 'translateZ(-' + image1P +'px)',
+        display: (image1P <= 1) ? 'none' : 'block',
       },
       image2: {
         opacity,
@@ -172,6 +177,7 @@ class App extends Component {
       backposition:{
         backgroundImage:'url(http://assets.myntassets.com/v1488455382/radium/roadster-3d/road.jpg)',
         width:'100%',
+        height: (this.state.isiPhone) ? screen.availHeight : screen.availHeight - 80,
         backgroundSize:'cover',
         overflow:'hidden',
         color: 'white'
