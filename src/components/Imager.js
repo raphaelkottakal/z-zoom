@@ -57,8 +57,8 @@ class Imager extends Component {
 			if (this.props.href) {
 
 				return(
-					<Linker style={this.props.style} gaAction={this.props.gaAction} href={this.props.href}>
-						<img src={this.state.src} alt="Myntra" />
+					<Linker gaAction={this.props.gaAction} href={this.props.href}>
+						<img style={this.props.style} src={this.state.src} alt="Myntra" />
 					</Linker>
 				);
 			}
