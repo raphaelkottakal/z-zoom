@@ -175,7 +175,7 @@ class App extends Component {
         display: (image10P <= 1) ? 'none' : 'block',
       },
       backposition:{
-        backgroundImage:'url(http://assets.myntassets.com/v1488455382/radium/roadster-3d/road.jpg)',
+        backgroundImage:'url(http://assets.myntassets.com/w_480,fl_progressive/v1488455382/radium/roadster-3d/road.jpg)',
         width:'100%',
         height: (this.state.isiPhone) ? screen.availHeight : screen.availHeight - 80,
         backgroundSize:'cover',

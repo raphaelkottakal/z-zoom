@@ -21,7 +21,7 @@ class Imager extends Component {
 		if (this.props.src.indexOf('http://assets.myntassets.com/') !== -1 &&
 			this.props.src.indexOf('http://assets.myntassets.com/w_') === -1) {
 
-			src = this.insertString(this.props.src,29,0,'w_480,q_60,fl_progressive/');
+			src = this.insertString(this.props.src,29,0,'w_480,fl_progressive/');
 		}
 		return src;
 	}
