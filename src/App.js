@@ -4,12 +4,13 @@ import Swipeable from 'react-swipeable';
 import Imager from './components/Imager';
 
 class App extends Component {
-	
+
 	constructor() {
 		super();
 		this.state = {
 			zoomFactor: 1,
-      isiPhone: false
+      isiPhone: false,
+			zoomEnded: false
 		}
 	}
 
@@ -30,7 +31,12 @@ class App extends Component {
 			const newZoomFactor = this.state.zoomFactor - 100;
 
 			this.setState({
-				zoomFactor: newZoomFactor
+				zoomFactor: newZoomFactor,
+				zoomEnded: false
+			});
+		} else {
+			this.setState({
+				zoomEnded: true
 			});
 		}
 	}
@@ -43,9 +49,31 @@ class App extends Component {
 			const newZoomFactor = this.state.zoomFactor + 100;
 
 			this.setState({
-				zoomFactor: newZoomFactor
+				zoomFactor: newZoomFactor,
+				zoomEnded: false
 			});
 		}
+	}
+
+	moreContent() {
+		return (
+			<div>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+			</div>
+		);
 	}
 
   render() {
@@ -60,7 +88,7 @@ class App extends Component {
     const image8P = 13100 + this.state.zoomFactor;
     const image9P = 15100 + this.state.zoomFactor;
     const image10P = 17100 + this.state.zoomFactor;
-    
+
     const opacity = 0.85;
     const top = '5%';
     const left = '-15%';
@@ -182,7 +210,7 @@ class App extends Component {
         overflow:'hidden',
         color: 'white'
         // backposition:'fixed',
-        // top: 0, 
+        // top: 0,
         // left: 0,
         // minWidth: '100%',
         // minHeight: '100%',
@@ -197,7 +225,7 @@ class App extends Component {
 
   	}
     return (
-
+				<div>
       	<Swipeable
           style={css.backposition}
       		onSwipingUp={this.handelTouchZoomIn.bind(this)}
@@ -218,7 +246,7 @@ class App extends Component {
                 style={css.image3}
                 href="http://www.myntra.com/Pants"
                 src="http://assets.myntassets.com/v1488450563/radium/roadster-3d/gift.gif"
-              />  
+              />
               <Imager
                 style={css.image4}
                 href="http://www.myntra.com/shoes"
@@ -238,7 +266,7 @@ class App extends Component {
                 style={css.image7}
                 href="http://www.myntra.com/Pants"
                 src="http://assets.myntassets.com/v1488450563/radium/roadster-3d/gift.gif"
-              />  
+              />
               <Imager
                 style={css.image8}
                 href="http://www.myntra.com/shoes"
@@ -248,7 +276,7 @@ class App extends Component {
                 style={css.image9}
                 href="http://www.myntra.com/Pants"
                 src="http://assets.myntassets.com/v1488450563/radium/roadster-3d/gift.gif"
-              />  
+              />
               <Imager
                 style={css.image10}
                 href="http://www.myntra.com/shoes"
@@ -260,6 +288,11 @@ class App extends Component {
               src="http://assets.myntassets.com/v1488454134/radium/roadster-3d/bike-min.png"
             />
       	</Swipeable>
+				{(this.state.zoomEnded) ?
+					this.moreContent() :
+					''
+				}
+				</div>
     );
   }
 }
