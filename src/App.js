@@ -10,7 +10,6 @@ class App extends Component {
 		this.state = {
 			zoomFactor: 1,
       isiPhone: false,
-			zoomEnded: false
 		}
 	}
 
@@ -24,7 +23,7 @@ class App extends Component {
 
 	handelTouchZoomIn(e) {
 
-    // console.log(this.state.zoomFactor);
+    console.log('zoomin');
 
 		if (this.state.zoomFactor >= -16100) {
 
@@ -32,48 +31,30 @@ class App extends Component {
 
 			this.setState({
 				zoomFactor: newZoomFactor,
-				zoomEnded: false
-			});
-		} else {
-			this.setState({
-				zoomEnded: true
 			});
 		}
 	}
 
 	handelTouchZoomOut(e) {
 
-    // console.log(this.state.zoomFactor);
+		console.log('zoomout');
+
 		if (this.state.zoomFactor <= 100) {
 
 			const newZoomFactor = this.state.zoomFactor + 100;
 
 			this.setState({
-				zoomFactor: newZoomFactor,
-				zoomEnded: false
+				zoomFactor: newZoomFactor
 			});
 		}
 	}
 
-	moreContent() {
-		return (
-			<div>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-				<h1>More content</h1>
-			</div>
-		);
+	handelMouseZoomIn() {
+			console.log('in');
+	}
+
+	handelMouseZoomOut() {
+			console.log('out');
 	}
 
   render() {
@@ -98,9 +79,9 @@ class App extends Component {
   		wrapper: {
   			perspective: 1900,
   			transformStyle: 'preserve-3d',
-  			position: 'reletive',
+  			position: 'relative',
         width: '100%',
-  			height: (this.state.isiPhone) ? screen.availHeight : screen.availHeight - 80
+  			height: (this.state.isiPhone) ? screen.availHeight * .90 : screen.availHeight * .90 - 80
   		},
   		image1: {
         opacity,
@@ -205,10 +186,11 @@ class App extends Component {
       backposition:{
         backgroundImage:'url(http://assets.myntassets.com/w_480,fl_progressive/v1488455382/radium/roadster-3d/road.jpg)',
         width:'100%',
-        height: (this.state.isiPhone) ? screen.availHeight : screen.availHeight - 80,
+        height: (this.state.isiPhone) ? screen.availHeight * .90 : screen.availHeight * .90 - 80,
         backgroundSize:'cover',
         overflow:'hidden',
-        color: 'white'
+        color: 'white',
+				position: 'relative'
         // backposition:'fixed',
         // top: 0,
         // left: 0,
@@ -221,15 +203,29 @@ class App extends Component {
         left: 0,
         width: '100%',
         height: 'auto'
-      }
+      },
+			plus: {
+				position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: 64,
+        height: 'auto'
+			},
+			minus: {
+				position: 'absolute',
+        bottom: 0,
+        right: 0,
+        width: 64,
+        height: 'auto'
+			}
 
   	}
     return (
 				<div>
       	<Swipeable
           style={css.backposition}
-      		onSwipingUp={this.handelTouchZoomIn.bind(this)}
-      		onSwipingDown={this.handelTouchZoomOut.bind(this)}
+      		onSwipingLeft={this.handelTouchZoomIn.bind(this)}
+      		onSwipingRight={this.handelTouchZoomOut.bind(this)}
       	  >
         	<div style={css.wrapper} ref="wrapper">
   	      		<Imager
@@ -287,11 +283,31 @@ class App extends Component {
               style={css.bike}
               src="http://assets.myntassets.com/v1488454134/radium/roadster-3d/bike-min.png"
             />
+						{/*<img
+							onMouseDown={this.handelMouseZoomIn.bind(this)}
+              style={css.plus}
+              src="http://placehold.it/64/648/fff?text=P"
+            />
+						<img
+							onMouseDown={this.handelMouseZoomOut.bind(this)}
+              style={css.minus}
+              src="http://placehold.it/64/648/fff?text=M"
+            />*/}
       	</Swipeable>
-				{(this.state.zoomEnded) ?
-					this.moreContent() :
-					''
-				}
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
+				<h1>More content</h1>
 				</div>
     );
   }
