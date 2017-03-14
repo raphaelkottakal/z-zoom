@@ -84,7 +84,7 @@ class App extends Component {
     const image10P = 17100 + this.state.zoomFactor;
 
     const opacity = 0.85;
-    const top = '5%';
+    const top = 0;
     const left = '-15%';
     const right = '-15%';
 
@@ -94,7 +94,7 @@ class App extends Component {
   			transformStyle: 'preserve-3d',
   			position: 'relative',
         width: '100%',
-  			height: (this.state.isiPhone) ? screen.availHeight * .90 : screen.availHeight * .90 - 80
+  			height: (this.state.isiPhone) ? screen.availHeight * .80 : screen.availHeight * .80 - 80
   		},
   		image1: {
         opacity,
@@ -199,7 +199,7 @@ class App extends Component {
       backposition:{
         backgroundImage:'url(http://assets.myntassets.com/w_480,fl_progressive/v1488455382/radium/roadster-3d/road.jpg)',
         width:'100%',
-        height: (this.state.isiPhone) ? screen.availHeight * .90 : screen.availHeight * .90 - 80,
+        height: (this.state.isiPhone) ? screen.availHeight * .80 : screen.availHeight * .80 - 80,
         backgroundSize:'cover',
         overflow:'hidden',
         color: 'white',
@@ -294,7 +294,7 @@ class App extends Component {
         	</div>
             <Imager
               style={css.bike}
-              src="http://assets.myntassets.com/v1488454134/radium/roadster-3d/bike-min.png"
+              src="http://assets.myntassets.com/w_480,fl_progressive/assets/images/lookbook/2017/3/14/11489493121998-new-bike2.png"
             />
 						<img
               onTouchEnd={this.handelMouseUp.bind(this)}
