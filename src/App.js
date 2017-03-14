@@ -19,6 +19,8 @@ class App extends Component {
     if (userAgent.includes('iPhone')) {
       this.setState({ isiPhone: true });
     }
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
   }
 
 	handelTouchZoomIn(e) {
@@ -51,11 +53,22 @@ class App extends Component {
 
 	handelMouseZoomIn() {
 			console.log('in');
+      this.interval = setInterval(() => {
+        this.handelTouchZoomIn();
+      }, 30);
 	}
 
 	handelMouseZoomOut() {
 			console.log('out');
+      this.interval = setInterval(() => {
+        this.handelTouchZoomOut();
+      }, 30);
 	}
+
+  handelMouseUp() {
+    console.log('mouseUp');
+    clearInterval(this.interval);
+  }
 
   render() {
 
@@ -283,16 +296,20 @@ class App extends Component {
               style={css.bike}
               src="http://assets.myntassets.com/v1488454134/radium/roadster-3d/bike-min.png"
             />
-						{/*<img
-							onMouseDown={this.handelMouseZoomIn.bind(this)}
+						<img
+              onTouchEnd={this.handelMouseUp.bind(this)}
+							onTouchStart={this.handelMouseZoomIn.bind(this)}
               style={css.plus}
+              alt="zoomin"
               src="http://placehold.it/64/648/fff?text=P"
             />
 						<img
-							onMouseDown={this.handelMouseZoomOut.bind(this)}
+              onTouchEnd={this.handelMouseUp.bind(this)}
+							onTouchStart={this.handelMouseZoomOut.bind(this)}
               style={css.minus}
+              alt="zoomOut"
               src="http://placehold.it/64/648/fff?text=M"
-            />*/}
+            />
       	</Swipeable>
 				<h1>More content</h1>
 				<h1>More content</h1>
