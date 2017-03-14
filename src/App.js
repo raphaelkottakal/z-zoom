@@ -53,6 +53,7 @@ class App extends Component {
 
 	handelMouseZoomIn() {
 			console.log('in');
+      clearInterval(this.interval);
       this.interval = setInterval(() => {
         this.handelTouchZoomIn();
       }, 30);
@@ -60,6 +61,7 @@ class App extends Component {
 
 	handelMouseZoomOut() {
 			console.log('out');
+      clearInterval(this.interval);
       this.interval = setInterval(() => {
         this.handelTouchZoomOut();
       }, 30);
